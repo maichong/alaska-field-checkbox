@@ -79,6 +79,9 @@ export default class CheckboxFieldView extends React.Component {
         padding: '5px 0'
       }
     };
+    let { muiTheme } = this.state;
+    let noteElement = field.note ?
+      <div style={muiTheme.fieldNoteInline}>{field.note}</div> : null;
     return (
       <div style={styles.root}>
         <Checkbox
@@ -87,6 +90,7 @@ export default class CheckboxFieldView extends React.Component {
           onCheck={this._handleCheck}
           {...others}
         />
+        {noteElement}
       </div>
     );
   }
