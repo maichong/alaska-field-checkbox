@@ -8,6 +8,7 @@ import React from 'react';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import ContextPure from 'material-ui/lib/mixins/context-pure';
 import Checkbox from 'material-ui/lib/checkbox';
+import { shallowEqual } from 'alaska-admin-view';
 
 export default class CheckboxFieldView extends React.Component {
 
@@ -33,7 +34,7 @@ export default class CheckboxFieldView extends React.Component {
 
   constructor(props, context) {
     super(props);
-    this._handleCheck = this._handleCheck.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
     this.state = {
       muiTheme: context.muiTheme ? context.muiTheme : getMuiTheme(),
       views: context.views,
@@ -60,8 +61,12 @@ export default class CheckboxFieldView extends React.Component {
     this.setState(newState);
   }
 
-  _handleCheck(event, checked) {
+  handleCheck(event, checked) {
     this.props.onChange && this.props.onChange(checked);
+  }
+
+  shouldComponentUpdate(props) {
+    return !shallowEqual(props, this.props, 'data', 'onChange', 'model');
   }
 
   render() {
@@ -87,7 +92,7 @@ export default class CheckboxFieldView extends React.Component {
         <Checkbox
           label={field.label}
           checked={value}
-          onCheck={this._handleCheck}
+          onCheck={this.handleCheck}
           {...others}
         />
         {noteElement}

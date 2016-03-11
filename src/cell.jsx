@@ -8,6 +8,8 @@ import React from 'react';
 import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
 import ContextPure from 'material-ui/lib/mixins/context-pure';
 
+import FontIcon from 'material-ui/lib/font-icon';
+
 export default class CheckboxFieldCell extends React.Component {
 
   static propTypes = {
@@ -47,12 +49,6 @@ export default class CheckboxFieldCell extends React.Component {
     };
   }
 
-  componentWillMount() {
-  }
-
-  componentDidMount() {
-  }
-
   componentWillReceiveProps(nextProps, nextContext) {
     let newState = {};
     if (nextContext.muiTheme) {
@@ -64,17 +60,17 @@ export default class CheckboxFieldCell extends React.Component {
     this.setState(newState);
   }
 
-  componentWillUnmount() {
+  shouldComponentUpdate(props) {
+    return props.value != this.props.value;
   }
 
   render() {
     let props = this.props;
-    let state = this.state;
-    let styles = {
-      root: {}
-    };
-    return (
-      <div style={styles.root}>CheckboxFieldCell Component</div>
-    );
+    let muiTheme = this.state.muiTheme;
+    if (props.value) {
+      return <FontIcon className="material-icons"
+                       color={muiTheme.baseTheme.palette.primary1Color}>check_circle</FontIcon>;
+    }
+    return <FontIcon className="material-icons" color="#999">panorama_fish_eye</FontIcon>;
   }
 }
