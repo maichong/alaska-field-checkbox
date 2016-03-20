@@ -8,7 +8,21 @@
 
 const alaska = require('alaska');
 
-exports.views = {
+class CheckboxField extends alaska.Field {
+  createFilter(filter) {
+    let value = filter;
+    if (typeof filter == 'object') {
+      if (filter.$ne === true) {
+        //已经处理过的filter
+        return { $ne: true }
+      }
+      value = filter.value;
+    }
+    return (!value || value == 'false') ? { $ne: true } : true;
+  }
+}
+
+CheckboxField.views = {
   cell: {
     name: 'CheckboxFieldCell',
     field: __dirname + '/lib/cell.js'
@@ -19,15 +33,8 @@ exports.views = {
   }
 };
 
-exports.plain = Boolean;
+CheckboxField.plain = Boolean;
 
-/**
- * alaska-admin-view 前端控件初始化参数
- * @param field
- * @param Model
- */
-exports.viewOptions = function (field, Model) {
-  let options = alaska.Field.viewOptions.apply(this, arguments);
-  options.labelPosition = field.labelPosition;
-  return options;
-};
+CheckboxField.viewOptions = ['labelPosition'];
+
+module.exports = CheckboxField;

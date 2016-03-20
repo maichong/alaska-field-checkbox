@@ -1,6 +1,6 @@
 {
   "name": "alaska-field-checkbox",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Alaksa checkbox field",
   "main": "index.js",
   "scripts": {
