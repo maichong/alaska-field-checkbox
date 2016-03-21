@@ -5,10 +5,8 @@
  */
 
 import React from 'react';
-import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
-import ContextPure from 'material-ui/lib/mixins/context-pure';
-import Checkbox from 'material-ui/lib/checkbox';
-import { shallowEqual } from 'alaska-admin-view';
+
+import Checkbox from './Checkbox';
 
 export default class CheckboxFieldView extends React.Component {
 
@@ -16,86 +14,28 @@ export default class CheckboxFieldView extends React.Component {
     children: React.PropTypes.node
   };
 
-  static contextTypes = {
-    muiTheme: React.PropTypes.object,
-    views: React.PropTypes.object,
-    settings: React.PropTypes.object,
-  };
-
-  static childContextTypes = {
-    muiTheme: React.PropTypes.object,
-    views: React.PropTypes.object,
-    settings: React.PropTypes.object,
-  };
-
-  static mixins = [
-    ContextPure
-  ];
-
-  constructor(props, context) {
-    super(props);
-    this.handleCheck = this.handleCheck.bind(this);
-    this.state = {
-      muiTheme: context.muiTheme ? context.muiTheme : getMuiTheme(),
-      views: context.views,
-      settings: context.settings,
-    };
-  }
-
-  getChildContext() {
-    return {
-      muiTheme: this.state.muiTheme,
-      views: this.context.views,
-      settings: this.context.settings,
-    };
-  }
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    let newState = {};
-    if (nextContext.muiTheme) {
-      newState.muiTheme = nextContext.muiTheme;
-    }
-    if (nextContext.views) {
-      newState.views = nextContext.views;
-    }
-    this.setState(newState);
-  }
-
-  handleCheck(event, checked) {
+  handleCheck = (checked) => {
     this.props.onChange && this.props.onChange(checked);
-  }
+  };
 
   shouldComponentUpdate(props) {
-    return !shallowEqual(props, this.props, 'data', 'onChange', 'model');
+    return props.value !== this.props.value;
   }
 
   render() {
     let {
-      model,
-      data,
       field,
-      value,
-      onChange,
-      ...others
+      value
       } = this.props;
-    let state = this.state;
-    let styles = {
-      root: {
-        padding: '5px 0'
-      }
-    };
-    let { muiTheme } = this.state;
-    let noteElement = field.note ?
-      <div style={muiTheme.fieldNoteInline}>{field.note}</div> : null;
     return (
-      <div style={styles.root}>
-        <Checkbox
-          label={field.label}
-          checked={value}
-          onCheck={this.handleCheck}
-          {...others}
-        />
-        {noteElement}
+      <div className="form-group">
+        <div className="col-sm-offset-2 col-sm-10">
+          <Checkbox
+            label={field.label}
+            value={value}
+            onCheck={this.handleCheck}
+          />
+        </div>
       </div>
     );
   }
