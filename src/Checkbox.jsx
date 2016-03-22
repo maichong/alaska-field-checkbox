@@ -10,7 +10,8 @@ export default class Checkbox extends React.Component {
 
   static propTypes = {
     style: React.PropTypes.object,
-    value: React.PropTypes.boolean,
+    radio: React.PropTypes.bool,
+    value: React.PropTypes.bool,
     label: React.PropTypes.string,
     onCheck: React.PropTypes.func,
   };
@@ -22,9 +23,10 @@ export default class Checkbox extends React.Component {
   render() {
     let props = this.props;
     let checked = props.value ? 'checked' : '';
+    let type = props.radio ? 'radio' : 'checkbox';
     return (
-      <label className="checkbox" style={props.style}>
-        <input type="checkbox" checked={checked} className="custom-checkbox" onClick={this.handleCheck} />
+      <label className={type} style={props.style}>
+        <input type={type} checked={checked} className={'custom-'+type} onClick={this.handleCheck}/>
             <span className="icons">
               <span className="icon-unchecked"></span>
               <span className="icon-checked"></span>
