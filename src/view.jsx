@@ -25,16 +25,25 @@ export default class CheckboxFieldView extends React.Component {
   render() {
     let {
       field,
-      value
+      value,
+      errorText
       } = this.props;
+    let help = field.help;
+    let className = 'form-group';
+    if (errorText) {
+      className += ' has-error';
+      help = errorText;
+    }
+    let helpElement = help ? <p className="help-block">{help}</p> : null;
     return (
-      <div className="form-group">
+      <div className={className}>
         <div className="col-sm-offset-2 col-sm-10">
           <Checkbox
             label={field.label}
             value={value}
             onCheck={this.handleCheck}
           />
+          {helpElement}
         </div>
       </div>
     );
