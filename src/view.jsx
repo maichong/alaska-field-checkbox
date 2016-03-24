@@ -26,7 +26,8 @@ export default class CheckboxFieldView extends React.Component {
     let {
       field,
       value,
-      errorText
+      errorText,
+      disabled
       } = this.props;
     let help = field.help;
     let className = 'form-group';
@@ -42,6 +43,7 @@ export default class CheckboxFieldView extends React.Component {
             label={field.label}
             value={value}
             onCheck={this.handleCheck}
+            disabled={disabled}
           />
           {helpElement}
         </div>

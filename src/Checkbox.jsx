@@ -26,7 +26,8 @@ export default class Checkbox extends React.Component {
     let type = props.radio ? 'radio' : 'checkbox';
     return (
       <label className={type} style={props.style}>
-        <input type={type} checked={checked} className={'custom-'+type} onChange={this.handleCheck}/>
+        <input type={type} disabled={props.disabled} checked={checked} className={'custom-'+type}
+               onChange={this.handleCheck}/>
             <span className="icons">
               <span className="icon-unchecked"></span>
               <span className="icon-checked"></span>
