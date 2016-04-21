@@ -53,7 +53,7 @@ export default class CheckboxFieldView extends React.Component {
       disabled={disabled}
     />);
 
-    if (field.fullWidth) {
+    if (field.horizontal === false) {
       return (
         <div className={className}>
           {input}
