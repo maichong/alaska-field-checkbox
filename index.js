@@ -30,6 +30,10 @@ CheckboxField.views = {
   view: {
     name: 'CheckboxFieldView',
     field: __dirname + '/lib/view.js'
+  },
+  filter: {
+    name: 'CheckboxFieldFilter',
+    field: __dirname + '/lib/filter.js'
   }
 };
 
