@@ -25,15 +25,15 @@ class CheckboxField extends alaska.Field {
 CheckboxField.views = {
   cell: {
     name: 'CheckboxFieldCell',
-    field: __dirname + '/lib/cell.js'
+    path: __dirname + '/lib/cell.js'
   },
   view: {
     name: 'CheckboxFieldView',
-    field: __dirname + '/lib/view.js'
+    path: __dirname + '/lib/view.js'
   },
   filter: {
     name: 'CheckboxFieldFilter',
-    field: __dirname + '/lib/filter.js'
+    path: __dirname + '/lib/filter.js'
   }
 };
 

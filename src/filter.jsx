@@ -45,7 +45,7 @@ export default class CheckboxFieldFilter extends React.Component {
     const { field, onClose } = this.props;
     const { value } = this.state;
     const buttonClassName = 'btn btn-default';
-    const buttonClassNameActive = buttonClassName + ' active';
+    const buttonClassNameActive = 'btn btn-success';
     return (
       <div className="row field-filter field-filter-text">
         <label className="col-xs-2 control-label text-right">{field.label}</label>
