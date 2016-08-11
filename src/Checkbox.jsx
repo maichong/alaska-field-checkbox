@@ -22,7 +22,7 @@ export default class Checkbox extends React.Component {
 
   render() {
     let props = this.props;
-    let checked = props.value ? 'checked' : undefined;
+    let checked = props.value ? 'checked' : false;
     let type = props.radio ? 'radio' : 'checkbox';
     return (
       <label className={type} style={props.style}>

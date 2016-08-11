@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-
 import Checkbox from './Checkbox';
+import { shallowEqual } from 'alaska-admin-view';
 
 export default class CheckboxFieldView extends React.Component {
 
@@ -25,7 +25,7 @@ export default class CheckboxFieldView extends React.Component {
   };
 
   shouldComponentUpdate(props) {
-    return props.value !== this.props.value;
+    return !shallowEqual(props, this.props, 'data', 'onChange', 'model');
   }
 
   render() {
