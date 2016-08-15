@@ -8,16 +8,18 @@ import React from 'react';
 import Checkbox from './Checkbox';
 import { shallowEqual } from 'alaska-admin-view';
 
+const { bool, object, func, string } = React.PropTypes;
+
 export default class CheckboxFieldView extends React.Component {
 
   static propTypes = {
-    model: React.PropTypes.object,
-    field: React.PropTypes.object,
-    data: React.PropTypes.object,
-    errorText: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    value: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
+    model: object,
+    field: object,
+    data: object,
+    errorText: string,
+    disabled: bool,
+    value: bool,
+    onChange: func,
   };
 
   handleCheck = (checked) => {
@@ -36,7 +38,7 @@ export default class CheckboxFieldView extends React.Component {
       disabled
       } = this.props;
     let help = field.help;
-    let className = 'form-group';
+    let className = 'form-group checkbox-field';
     if (errorText) {
       className += ' has-error';
       help = errorText;

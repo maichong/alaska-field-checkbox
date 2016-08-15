@@ -6,17 +6,19 @@
 
 import React from 'react';
 
+const { object, any, func } = React.PropTypes;
+
 export default class CheckboxFieldFilter extends React.Component {
 
   static propTypes = {
-    value: React.PropTypes.any,
-    field: React.PropTypes.object,
-    onChange: React.PropTypes.func,
-    onClose: React.PropTypes.func,
+    value: any,
+    field: object,
+    onChange: func,
+    onClose: func,
   };
 
   static contextTypes = {
-    t: React.PropTypes.func,
+    t: func,
   };
 
   constructor(props) {
@@ -47,7 +49,7 @@ export default class CheckboxFieldFilter extends React.Component {
     const buttonClassName = 'btn btn-default';
     const buttonClassNameActive = 'btn btn-success';
     return (
-      <div className="row field-filter field-filter-text">
+      <div className="row field-filter checkbox-field-filter">
         <label className="col-xs-2 control-label text-right">{field.label}</label>
         <div className="col-xs-10">
           <div className="btn-group">

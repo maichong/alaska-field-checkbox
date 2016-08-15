@@ -6,14 +6,16 @@
 
 import React from 'react';
 
+const { bool, object, func, string } = React.PropTypes;
+
 export default class Checkbox extends React.Component {
 
   static propTypes = {
-    style: React.PropTypes.object,
-    radio: React.PropTypes.bool,
-    value: React.PropTypes.bool,
-    label: React.PropTypes.string,
-    onCheck: React.PropTypes.func,
+    style: object,
+    radio: bool,
+    value: bool,
+    label: string,
+    onCheck: func,
   };
 
   handleCheck = () => {
